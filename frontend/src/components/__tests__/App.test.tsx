@@ -39,7 +39,9 @@ describe('App', () => {
     const kpis = await screen.findByRole('list', { name: 'Key accuracy numbers' });
     expect(within(kpis).getByText('Average error (MAE)')).toBeInTheDocument();
     expect(within(kpis).getAllByText(/GW$/).length).toBeGreaterThan(0);
-    expect(await screen.findByText(/^Plan on at least .* GWh of wind; buy the rest from the market\.$/)).toBeInTheDocument();
+    expect(await screen.findByText('Wind to rely on')).toBeInTheDocument();
+    expect(screen.getByText('Buy the rest of your demand from the day-ahead market.')).toBeInTheDocument();
+    expect(screen.getByRole('group', { name: 'Choose a delivery day' })).toBeInTheDocument();
     expect(screen.getByText(/9 in 10 hours, the forecast was no more than/)).toBeInTheDocument();
 
     const analysisCall = fetchMock.mock.calls.map((c) => String(c[0])).find((u) => u.includes('/api/analysis'));

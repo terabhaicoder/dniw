@@ -15,6 +15,7 @@ import { HourOfDayChart } from './HourOfDayChart';
 import { KpiCards, KpiSkeleton } from './KpiCards';
 import { Panel } from './Panel';
 import { SeriesChart } from './SeriesChart';
+import { Takeaways } from './Takeaways';
 import { EmptyState, ErrorState, Skeleton } from './States';
 
 export function Dashboard() {
@@ -95,6 +96,12 @@ export function Dashboard() {
         )}
       </p>
 
+      {a && !empty && (
+        <section aria-label="Key takeaways" className={busy ? 'is-busy' : undefined}>
+          <Takeaways analysis={a} />
+        </section>
+      )}
+
       <section aria-label="Key numbers" className={busy ? 'is-busy' : undefined}>
         {analysis.isPending || !ready ? (
           <KpiSkeleton />
@@ -122,7 +129,7 @@ export function Dashboard() {
         <Panel
           id="dist"
           title="How big are the misses?"
-          subtitle="Spread of hourly errors (forecast − actual)."
+          subtitle="How far off each hour was. Right of zero means the forecast was too high."
           info="P10, P50 and P90 are the errors that 10%, 50% and 90% of hours fall below. P90 is a sensible starting point for a safety margin."
           busy={busy}
         >
@@ -174,6 +181,7 @@ export function Dashboard() {
             cutoff={state.cutoff}
             confidence={state.confidence}
             modeIsHorizon={state.mode === 'horizon'}
+            daily={a?.daily}
             onChange={onGuideChange}
           />
         )}

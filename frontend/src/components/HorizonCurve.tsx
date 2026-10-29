@@ -53,7 +53,7 @@ export const HorizonCurve = memo(function HorizonCurve({
               formatter={gwFormatter}
               labelFormatter={(h: number) => `${h} hours ahead`}
             />
-            <Legend verticalAlign="top" height={28} />
+            <Legend verticalAlign="top" wrapperStyle={{ paddingBottom: 8 }} />
             {marker !== null && (
               <ReferenceLine
                 x={marker}

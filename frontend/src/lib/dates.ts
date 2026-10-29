@@ -55,9 +55,9 @@ const plainDay = new Intl.DateTimeFormat('en-GB', {
 
 /** "2 Jan, 09:00" in UK time. */
 export function formatUkDateTime(iso: string | null | undefined): string {
-  if (!iso) return '—';
+  if (!iso) return 'n/a';
   const t = Date.parse(iso);
-  return Number.isNaN(t) ? '—' : ukDateTime.format(t);
+  return Number.isNaN(t) ? 'n/a' : ukDateTime.format(t);
 }
 
 export function formatUkShortDate(iso: string | number): string {

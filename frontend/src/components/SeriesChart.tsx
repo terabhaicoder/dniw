@@ -35,7 +35,7 @@ function SeriesTooltip({ active, payload }: TooltipProps<number, string>) {
         <dd>{fmt(row.forecast)}</dd>
         <dt>Error</dt>
         <dd>
-          {typeof err === 'number' ? `${err > 0 ? '+' : ''}${err.toFixed(2)} GW ${err > 0 ? '(too high)' : err < 0 ? '(too low)' : ''}` : '—'}
+          {typeof err === 'number' ? `${err > 0 ? '+' : ''}${err.toFixed(2)} GW ${err > 0 ? '(too high)' : err < 0 ? '(too low)' : ''}` : 'n/a'}
         </dd>
         <dt>Forecast published</dt>
         <dd>{row.publish ? `${formatUkDateTime(row.publish)} UK` : 'none available'}</dd>
@@ -78,7 +78,7 @@ export const SeriesChart = memo(function SeriesChart({ series }: { series: Serie
             label={{ value: 'GW', angle: -90, position: 'insideLeft', fill: colors.axis, fontSize: 12 }}
           />
           <Tooltip content={<SeriesTooltip />} />
-          <Legend verticalAlign="top" height={28} iconType="plainline" />
+          <Legend verticalAlign="top" iconType="plainline" wrapperStyle={{ paddingBottom: 8 }} />
           <Line
             name="Actual"
             dataKey="actual"

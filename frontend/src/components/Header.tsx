@@ -9,10 +9,8 @@ export function Header() {
           <rect width="32" height="32" rx="7" />
           <path d="M6 12h14a4 4 0 1 0-4-4M6 17h19a4 4 0 1 1-4 4M6 22h9" />
         </svg>
-        <div>
-          <h1 className="app-header__title">WindCast</h1>
-          <p className="app-header__subtitle">Day-ahead wind forecast monitor — GB national wind</p>
-        </div>
+        <h1 className="app-header__title">WindCast</h1>
+        <span className="chip">Pilot</span>
       </div>
       <button
         type="button"

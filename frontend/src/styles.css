@@ -17,8 +17,8 @@
   --focus: #2563eb;
   --skeleton: #eceef2;
   --shadow: 0 1px 2px rgb(16 24 40 / 6%);
-  --radius: 10px;
-  --font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+  --radius: 14px;
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
   color-scheme: light;
 }
 
@@ -252,9 +252,6 @@ select {
   gap: 16px;
 }
 .controls {
-  position: sticky;
-  top: 0;
-  z-index: 5;
   display: flex;
   flex-wrap: wrap;
   gap: 12px 24px;
@@ -745,15 +742,295 @@ output {
   text-align: center;
 }
 
+/* ---- Visual polish ---------------------------------------------------- */
+.app {
+  gap: 20px;
+  padding: 24px 20px 16px;
+}
+.app-header__title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.controls {
+  padding: 14px 18px;
+}
+.panel {
+  padding: 18px 20px;
+  gap: 14px;
+}
+.panel__title {
+  font-size: 1.08rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.kpi {
+  padding: 14px 16px;
+  gap: 6px;
+}
+.kpi__label {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.kpi__value {
+  font-size: 1.75rem;
+  letter-spacing: -0.02em;
+}
+
+/* Key takeaways */
+.takeaway-cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+.takeaway-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-soft), var(--surface) 70%);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+}
+.takeaway-card--warn {
+  background: linear-gradient(135deg, var(--warn-soft), var(--surface) 70%);
+  border-left-color: var(--warn);
+}
+.takeaway-card__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-2);
+}
+.takeaway-card__headline {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  font-variant-numeric: tabular-nums;
+}
+.takeaway-card__detail {
+  font-size: 0.88rem;
+  color: var(--text-2);
+}
+
+/* Buying guide */
+.guide {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+.guide__picker {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.guide__picker .field__label + * {
+  margin-bottom: 10px;
+}
+.guide__result {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.guide__dayhead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.guide__day {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  min-width: 11ch;
+}
+.guide__advice {
+  color: var(--text-2);
+  font-size: 0.92rem;
+}
+.icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.icon-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.equation {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1.2fr;
+  align-items: stretch;
+  gap: 10px;
+}
+.equation__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  min-width: 0;
+}
+.equation__item span {
+  font-size: 0.8rem;
+  color: var(--text-2);
+  font-weight: 500;
+}
+.equation__item strong {
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.equation__item small {
+  font-size: 0.78rem;
+  color: var(--text-2);
+}
+.equation__item--key {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+.equation__item--key strong {
+  color: var(--accent);
+  font-size: 1.7rem;
+}
+.equation__op {
+  align-self: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.status {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+}
+.status > span {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--bg);
+}
+.status--good {
+  background: var(--accent-soft);
+}
+.status--good > span {
+  background: var(--accent);
+}
+.status--warn {
+  background: var(--warn-soft);
+}
+.status--warn > span {
+  background: var(--warn);
+}
+
+/* Day calendar */
+.cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+.cal__weekday {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-2);
+  text-align: center;
+  padding-bottom: 2px;
+}
+.cal__day {
+  position: relative;
+  aspect-ratio: 1;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--over) calc(var(--heat) * 70%), var(--surface-2));
+  font-size: 0.85rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+  transition: transform 0.1s, border-color 0.1s;
+}
+.cal__day small {
+  position: absolute;
+  bottom: 2px;
+  font-size: 0.55rem;
+  color: var(--text-2);
+}
+.cal__day:hover {
+  border-color: var(--text-2);
+}
+.cal__day.is-selected {
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
+  font-weight: 700;
+}
+.cal__legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 0.72rem;
+  color: var(--text-2);
+}
+.cal__scale {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--surface-2), color-mix(in srgb, var(--over) 70%, var(--surface-2)));
+  border: 1px solid var(--border);
+}
+
 @media (max-width: 860px) {
+  .guide {
+    grid-template-columns: minmax(0, 1fr);
+  }
   .grid {
     grid-template-columns: minmax(0, 1fr);
   }
-  .controls {
-    position: static;
-  }
 }
 @media (max-width: 520px) {
+  .equation {
+    grid-template-columns: 1fr;
+  }
+  .equation__op {
+    display: none;
+  }
   .app {
     padding: 12px;
   }

@@ -1,6 +1,7 @@
 /** Number formatting. Inputs are MW / MWh (as in the API); display is GW / GWh for consistency. */
 
-export const DASH = '—';
+/** Shown when a value is missing. */
+export const DASH = 'n/a';
 
 function isNum(v: number | null | undefined): v is number {
   return typeof v === 'number' && Number.isFinite(v);

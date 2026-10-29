@@ -17,7 +17,7 @@ export function HelpPanel() {
             earlier. Use this to see how accuracy changes the further ahead you look.
           </li>
           <li>
-            <strong>Error</strong> = forecast − actual. A positive error means the forecast was <em>too high</em>: less
+            <strong>Error</strong> = forecast minus actual. A positive error means the forecast was <em>too high</em>: less
             wind came than expected, so you would be <strong>short</strong> of power. This is the risky side.
           </li>
           <li>All power values are in GW (1 GW = 1,000 MW). Times are UK local time unless marked UTC.</li>

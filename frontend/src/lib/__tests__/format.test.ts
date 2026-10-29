@@ -10,12 +10,12 @@ describe('power formatting', () => {
   });
 
   it('shows a dash for missing values', () => {
-    expect(formatGW(null)).toBe('—');
-    expect(formatGW(undefined)).toBe('—');
-    expect(formatGW(Number.NaN)).toBe('—');
-    expect(formatPct(null)).toBe('—');
-    expect(formatGWh(null)).toBe('—');
-    expect(formatHours(null)).toBe('—');
+    expect(formatGW(null)).toBe('n/a');
+    expect(formatGW(undefined)).toBe('n/a');
+    expect(formatGW(Number.NaN)).toBe('n/a');
+    expect(formatPct(null)).toBe('n/a');
+    expect(formatGWh(null)).toBe('n/a');
+    expect(formatHours(null)).toBe('n/a');
     expect(toGW(null)).toBeNull();
   });
 
@@ -57,6 +57,6 @@ describe('date helpers', () => {
   it('shows timestamps in UK time (BST aware)', () => {
     expect(formatUkDateTime('2026-01-02T09:00:00Z')).toBe('2 Jan, 09:00');
     expect(formatUkDateTime('2026-07-02T09:00:00Z')).toBe('2 Jul, 10:00');
-    expect(formatUkDateTime(null)).toBe('—');
+    expect(formatUkDateTime(null)).toBe('n/a');
   });
 });

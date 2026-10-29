@@ -1,5 +1,5 @@
 import { memo, useMemo } from 'react';
-import { Bar, BarChart, CartesianGrid, Legend, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import { Bar, CartesianGrid, ComposedChart, Legend, Line, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
 import type { HourStat } from '../api/types';
 import { gwFormatter, toHourRows } from '../lib/chartData';
 import { useTheme } from '../hooks/useTheme';
@@ -13,18 +13,18 @@ export const HourOfDayChart = memo(function HourOfDayChart({ rows }: { rows: Hou
   );
   return (
     <>
-      <div className="chart" role="img" aria-label="Bar chart of average error and bias for each hour of the day, UK time.">
+      <div className="chart" role="img" aria-label="Bars show average error and the line shows bias for each hour of the day, UK time.">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }} barGap={1}>
+          <ComposedChart data={data} margin={{ top: 8, right: 8, bottom: 0, left: 0 }}>
             <CartesianGrid stroke={colors.grid} vertical={false} />
             <XAxis dataKey="label" stroke={colors.axis} tick={{ fontSize: 11 }} interval="preserveStartEnd" minTickGap={8} />
             <YAxis stroke={colors.axis} tick={{ fontSize: 12 }} width={40} tickFormatter={(v: number) => v.toFixed(1)} />
             <Tooltip formatter={gwFormatter} labelFormatter={(l: string) => `${l} UK`} />
-            <Legend verticalAlign="top" height={28} />
+            <Legend verticalAlign="top" wrapperStyle={{ paddingBottom: 8 }} />
             <ReferenceLine y={0} stroke={colors.axis} />
-            <Bar name="Average error (MAE)" dataKey="mae" fill={colors.forecast} isAnimationActive={false} />
-            <Bar name="Bias" dataKey="bias" fill={colors.safe} isAnimationActive={false} />
-          </BarChart>
+            <Bar name="Average error (MAE)" dataKey="mae" fill={colors.forecast} fillOpacity={0.75} radius={[3, 3, 0, 0]} isAnimationActive={false} />
+            <Line name="Bias" dataKey="bias" type="monotone" stroke={colors.safe} strokeWidth={2.5} dot={false} isAnimationActive={false} />
+          </ComposedChart>
         </ResponsiveContainer>
       </div>
       {worst && worst.mae !== null && (
