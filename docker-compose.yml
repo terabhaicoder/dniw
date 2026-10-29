@@ -5,10 +5,17 @@ services:
       - "8000:8000"
     environment:
       WINDCAST_CORS_ORIGINS: "http://localhost:8080"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/meta')"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
+      start_period: 2s
 
   frontend:
     build: ./frontend
     ports:
       - "8080:80"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy

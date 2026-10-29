@@ -102,7 +102,7 @@ so each lookup is a binary search (`Dataset.latest_forecast`).
 ### Engineering practices
 - **Tests:** backend pytest suite (37 tests) covering cutoff boundaries (inclusive deadline, forecast
   published after deadline ignored), DST days, data cleaning, metric maths, histogram binning, the
-  no-leak buying guide and API validation (422s). Frontend suite (55 tests, Vitest + Testing Library)
+  no-leak buying guide and API validation (422s). Frontend suite (60 tests, Vitest + Testing Library)
   covering URL state (parse, fallbacks, back/forward), UK-time formatting across DST, CSV export
   (escaping and formula-injection guard), plain-English insight text, and app render tests
   (loading → data, mode switch, 500 with retry, readable 422 message, empty state).
