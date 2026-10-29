@@ -10,7 +10,7 @@ WindCast helps a UK utility's day-ahead power buying team answer two questions:
 
 Scope: delivery days **2 Jan – 1 Feb 2026**, which covers purchase decisions made in January 2026.
 
-**Live app:** `<VERCEL_URL>` · **API docs (Swagger):** `<VERCEL_URL>/api/docs`
+**Live app:** https://dniw.vercel.app · **API docs (Swagger):** https://dniw.vercel.app/api/docs
 **Key findings:** [docs/ANALYSIS.md](docs/ANALYSIS.md) · **API contract:** [docs/API.md](docs/API.md)
 
 ---
@@ -102,7 +102,13 @@ so each lookup is a binary search (`Dataset.latest_forecast`).
 ### Engineering practices
 - **Tests:** backend pytest suite (37 tests) covering cutoff boundaries (inclusive deadline, forecast
   published after deadline ignored), DST days, data cleaning, metric maths, histogram binning, the
-  no-leak buying guide and API validation (422s). Frontend tests with Vitest + Testing Library.
+  no-leak buying guide and API validation (422s). Frontend suite (55 tests, Vitest + Testing Library)
+  covering URL state (parse, fallbacks, back/forward), UK-time formatting across DST, CSV export
+  (escaping and formula-injection guard), plain-English insight text, and app render tests
+  (loading → data, mode switch, 500 with retry, readable 422 message, empty state).
+- **Frontend state:** all view settings live in the URL (shareable links, back button works), React Query
+  caches responses per parameter set and keeps the previous result on screen while new data loads,
+  the horizon slider is debounced, and derived chart data is memoised.
 - **Lint/format:** ruff (Python), ESLint + strict TypeScript (frontend).
 - **CI:** GitHub Actions on every push.
 - **Observability:** every request is logged with its duration and returns a `Server-Timing` header.
@@ -130,7 +136,7 @@ so each lookup is a binary search (`Dataset.latest_forecast`).
 │   ├── src/api/                 typed API client + types matching docs/API.md
 │   ├── src/hooks/               data hooks (React Query) and URL-state hook
 │   ├── src/components/          dashboard sections and charts
-│   ├── src/lib/                 formatting, CSV and other pure helpers
+│   ├── src/lib/                 formatting, UK dates, CSV, chart data and insight-text helpers
 │   ├── Dockerfile, nginx.conf   production image (nginx serves the build, proxies /api)
 ├── docs/
 │   ├── API.md                   API contract
